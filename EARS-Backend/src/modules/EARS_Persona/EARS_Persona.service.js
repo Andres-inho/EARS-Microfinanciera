@@ -1,4 +1,4 @@
-import { EARS_ConexionDb } from "../../config/EARS-ConexionDb";
+import { EARS_ConexionDb } from "../../config/EARS-ConexionDb.js";
 
 export const EARS_GetPersona = async () => {
     const [row] = await EARS_ConexionDb.query('select * from personas');
