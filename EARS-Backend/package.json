@@ -1,9 +1,11 @@
 {
-  "name": "package.json",
+  "name": "backend-microfinanciera",
   "version": "1.0.0",
-  "main": "EARS-App.js",
+  "type": "module",
+  "main": "./src/EARS-Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./src/EARS-App.js",
+    "start": "node ./src/EARS-App.js"
   },
   "keywords": [],
   "author": "",
