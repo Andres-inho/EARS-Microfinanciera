@@ -1,0 +1,32 @@
+.ears-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ears-login-form h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.ears-subtitle {
+  color: var(--ears-text-muted);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ears-error-alert {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--ears-danger);
+  padding: 0.75rem;
+  border-radius: var(--ears-radius-md);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.ears-login-action {
+  margin-top: 1rem;
+}

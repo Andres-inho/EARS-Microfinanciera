@@ -1,0 +1,20 @@
+.ears-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ears-border);
+  border-radius: var(--ears-radius-md);
+  background-color: var(--ears-bg-card);
+  color: var(--ears-text-main);
+  font-size: 1rem;
+  transition: var(--ears-transition);
+}
+
+.ears-input:focus {
+  outline: none;
+  border-color: var(--ears-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.ears-input::placeholder {
+  color: var(--ears-text-muted);
+}

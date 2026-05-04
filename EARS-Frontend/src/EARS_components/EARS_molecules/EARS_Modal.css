@@ -1,0 +1,57 @@
+.ears-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.ears-modal-content {
+  background: var(--ears-bg-card);
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--ears-radius-lg);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.ears-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--ears-border);
+}
+
+.ears-modal-header h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.ears-modal-close {
+  background: transparent;
+  color: var(--ears-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: var(--ears-radius-full);
+  transition: var(--ears-transition);
+}
+
+.ears-modal-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--ears-danger);
+}
+
+.ears-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+}

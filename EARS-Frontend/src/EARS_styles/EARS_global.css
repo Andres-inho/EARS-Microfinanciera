@@ -1,0 +1,87 @@
+@import './EARS_variables.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ears-font-family);
+  background-color: var(--ears-bg-main);
+  color: var(--ears-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--ears-text-main);
+}
+
+a {
+  color: var(--ears-primary);
+  text-decoration: none;
+  transition: var(--ears-transition);
+}
+
+a:hover {
+  color: var(--ears-primary-hover);
+}
+
+button {
+  font-family: var(--ears-font-family);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, select, textarea {
+  font-family: var(--ears-font-family);
+}
+
+/* Glassmorphism utility */
+.ears-glass {
+  background: var(--ears-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ears-glass-border);
+  box-shadow: var(--ears-shadow-md);
+}
+
+/* Gradients */
+.ears-gradient-text {
+  background: linear-gradient(135deg, var(--ears-primary), var(--ears-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ears-gradient-bg {
+  background: linear-gradient(135deg, var(--ears-primary), var(--ears-secondary));
+  color: white;
+}
+
+/* Animaciones */
+@keyframes ears-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ears-animate-fade {
+  animation: ears-fade-in 0.4s ease-out forwards;
+}
+
+/* Layout */
+.ears-app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.ears-main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}

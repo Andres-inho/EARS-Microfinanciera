@@ -1,0 +1,55 @@
+.ears-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--ears-border);
+  border-radius: 0;
+}
+
+.ears-navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.ears-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ears-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+
+.ears-role-badge {
+  background: var(--ears-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--ears-radius-full);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ears-logout-btn {
+  background: transparent;
+  color: var(--ears-danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: var(--ears-radius-md);
+  transition: var(--ears-transition);
+}
+
+.ears-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}

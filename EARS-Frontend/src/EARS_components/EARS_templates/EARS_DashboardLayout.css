@@ -1,0 +1,21 @@
+.ears-dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.ears-dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+.ears-dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--ears-bg-main);
+}
+
+.ears-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}

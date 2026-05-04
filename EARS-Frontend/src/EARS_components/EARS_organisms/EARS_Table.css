@@ -1,0 +1,53 @@
+.ears-table-container {
+  border-radius: var(--ears-radius-lg);
+  overflow-x: auto;
+  box-shadow: var(--ears-shadow-sm);
+}
+
+.ears-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ears-table th {
+  padding: 1rem 1.5rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  color: var(--ears-text-muted);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--ears-border);
+}
+
+.ears-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--ears-border);
+  color: var(--ears-text-main);
+  vertical-align: middle;
+}
+
+.ears-table tbody tr {
+  transition: var(--ears-transition);
+}
+
+.ears-table tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.03);
+}
+
+.ears-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ears-table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ears-table-empty {
+  text-align: center;
+  padding: 3rem !important;
+  color: var(--ears-text-muted) !important;
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --ears-primary: #6366f1;
+  --ears-primary-hover: #4f46e5;
+  --ears-secondary: #0ea5e9;
+  --ears-accent: #f43f5e;
+  --ears-success: #10b981;
+  --ears-warning: #f59e0b;
+  --ears-danger: #ef4444;
+
+  --ears-bg-main: #f8fafc;
+  --ears-bg-card: #ffffff;
+  --ears-text-main: #0f172a;
+  --ears-text-muted: #64748b;
+  
+  --ears-border: #e2e8f0;
+  --ears-radius-sm: 0.375rem;
+  --ears-radius-md: 0.75rem;
+  --ears-radius-lg: 1.5rem;
+  --ears-radius-full: 9999px;
+  
+  --ears-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ears-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --ears-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --ears-shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+  --ears-glass-bg: rgba(255, 255, 255, 0.7);
+  --ears-glass-border: rgba(255, 255, 255, 0.5);
+  
+  --ears-font-family: 'Outfit', sans-serif;
+  --ears-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --ears-bg-main: #0f172a;
+  --ears-bg-card: #1e293b;
+  --ears-text-main: #f8fafc;
+  --ears-text-muted: #94a3b8;
+  --ears-border: #334155;
+  --ears-glass-bg: rgba(30, 41, 59, 0.7);
+  --ears-glass-border: rgba(255, 255, 255, 0.1);
+}

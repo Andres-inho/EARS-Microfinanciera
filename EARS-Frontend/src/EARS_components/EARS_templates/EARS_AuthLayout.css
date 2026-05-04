@@ -1,0 +1,50 @@
+.ears-auth-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.ears-auth-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.ears-auth-brand {
+  text-align: center;
+}
+
+.ears-auth-brand h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.ears-auth-brand p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.ears-auth-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--ears-bg-main);
+}
+
+.ears-auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  border-radius: var(--ears-radius-lg);
+}
+
+@media (max-width: 768px) {
+  .ears-auth-left {
+    display: none;
+  }
+}

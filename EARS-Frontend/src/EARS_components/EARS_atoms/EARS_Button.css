@@ -1,0 +1,43 @@
+.ears-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--ears-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--ears-transition);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ears-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ears-btn-primary {
+  background-color: var(--ears-primary);
+  color: white;
+  box-shadow: var(--ears-shadow-md);
+}
+
+.ears-btn-primary:hover:not(:disabled) {
+  background-color: var(--ears-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--ears-shadow-glow);
+}
+
+.ears-btn-secondary {
+  background-color: var(--ears-bg-main);
+  color: var(--ears-text-main);
+  border: 1px solid var(--ears-border);
+}
+
+.ears-btn-secondary:hover:not(:disabled) {
+  border-color: var(--ears-primary);
+  color: var(--ears-primary);
+}
+
+.ears-btn-full {
+  width: 100%;
+}

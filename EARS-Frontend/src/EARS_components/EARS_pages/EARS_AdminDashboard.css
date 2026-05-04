@@ -1,0 +1,52 @@
+.ears-page-title {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.ears-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.ears-stat-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: var(--ears-radius-lg);
+  gap: 1.5rem;
+}
+
+.ears-stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--ears-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--ears-shadow-sm);
+}
+
+.ears-bg-primary { background-color: var(--ears-primary); }
+.ears-bg-success { background-color: var(--ears-success); }
+.ears-bg-warning { background-color: var(--ears-warning); }
+.ears-bg-danger { background-color: var(--ears-danger); }
+
+.ears-border-primary { border-left: 4px solid var(--ears-primary); }
+.ears-border-success { border-left: 4px solid var(--ears-success); }
+.ears-border-warning { border-left: 4px solid var(--ears-warning); }
+.ears-border-danger { border-left: 4px solid var(--ears-danger); }
+
+.ears-stat-info h3 {
+  font-size: 0.875rem;
+  color: var(--ears-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.ears-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ears-text-main);
+}
