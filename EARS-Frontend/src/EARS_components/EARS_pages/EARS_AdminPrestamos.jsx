@@ -10,7 +10,7 @@ const EARS_AdminPrestamos = () => {
   const [prestamos, setPrestamos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    persona: '', monto: '', valor_prestado: '', interes: '', saldo: '', cant_cuotas: '', valor_cuotas: '', forma_pago: 'mensual', fiador: ''
+    ficha: '', fecha_prestamo: '', interes: '', tiempo: '', valor_prestado: '', valor_futuro: '', tipo: '', persona: '', movimiento: '', fiador: '', estado: 'activo'
   });
 
   const cargarPrestamos = async () => {
@@ -58,10 +58,16 @@ const EARS_AdminPrestamos = () => {
 
   const columns = [
     { header: 'ID', accessor: 'id_prestamo' },
-    { header: 'Cliente (ID)', accessor: 'persona' },
-    { header: 'Monto Original', render: (row) => `$${row.monto}` },
-    { header: 'Total (c/ Interés)', render: (row) => `$${row.valor_prestado}` },
-    { header: 'Saldo Restante', render: (row) => `$${row.saldo || row.valor_prestado}` },
+    { header: 'Ficha', accessor: 'ficha' },
+    { header: 'Fecha prestamo', accessor: 'fecha_prestamo' },
+    { header: 'Total interes', accessor: 'interes' },
+    { header: 'Tiempo', accessor: 'tiempo' },
+    { header: 'Prestado', accessor: 'valor_prestado' },
+    { header: 'A pagar', accessor: 'valor_futuro' },
+    { header: 'Tipo', accessor: 'tipo' },
+    { header: 'Persona', accessor: 'id_persona' },
+    { header: 'Movimiento', accessor: 'movimiento' },
+    { header: 'Fiador', accessor: 'fiador' },
     { 
       header: 'Estado', 
       render: (row) => (
@@ -86,6 +92,8 @@ const EARS_AdminPrestamos = () => {
     return null;
   };
 
+  
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -99,26 +107,16 @@ const EARS_AdminPrestamos = () => {
 
       <EARS_Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Asignar Préstamo">
         <form onSubmit={handleSubmit}>
-          <EARS_FormField label="ID Persona" name="persona" value={formData.persona} onChange={handleChange} required />
-          <EARS_FormField label="Monto" type="number" name="monto" value={formData.monto} onChange={handleChange} required />
+          <EARS_FormField label="Ficha" name="ficha" value={formData.ficha} onChange={handleChange} required />
+          <EARS_FormField label="Fecha del prestamo" type="date" name="fecha_prestamo" value={formData.fecha_prestamo} onChange={handleChange} required />
           <EARS_FormField label="Interés (%)" type="number" name="interes" value={formData.interes} onChange={handleChange} required />
-          <EARS_FormField label="Valor Total a Pagar" type="number" name="valor_prestado" value={formData.valor_prestado} onChange={handleChange} required />
-          <EARS_FormField label="Saldo" type="number" name="saldo" value={formData.saldo} onChange={handleChange} required />
-          <EARS_FormField label="Cantidad Cuotas" type="number" name="cant_cuotas" value={formData.cant_cuotas} onChange={handleChange} required />
-          <EARS_FormField label="Valor Cuota" type="number" name="valor_cuotas" value={formData.valor_cuotas} onChange={handleChange} required />
-          
-          <div className="ears-form-field">
-            <label className="ears-label">Forma de Pago</label>
-            <select className="ears-input" name="forma_pago" value={formData.forma_pago} onChange={handleChange} required>
-              <option value="diario">Diario</option>
-              <option value="semanal">Semanal</option>
-              <option value="quincenal">Quincenal</option>
-              <option value="mensual">Mensual</option>
-            </select>
-          </div>
-          
-          <EARS_FormField label="Fiador (Opcional)" name="fiador" value={formData.fiador} onChange={handleChange} />
-
+          <EARS_FormField label="Tiempo" type="number" name="tiempo" value={formData.tiempo} onChange={handleChange} required />
+          <EARS_FormField label="Valor prestado" type="float" name="valor_prestado" value={formData.valor_prestado} onChange={handleChange} required />
+          <EARS_FormField label="Valor futuro" type="float" name="valor_futuro" value={formData.valor_futuro} onChange={handleChange} required />
+          <EARS_FormField label="Tipo" type="number" name="tipo" value={formData.tipo} onChange={handleChange} required />
+          <EARS_FormField label="Persona" type="number" name="persona" value={formData.persona} onChange={handleChange} required />
+          <EARS_FormField label="Movimiento" type="number" name="movimiento" value={formData.movimiento} onChange={handleChange} required />
+          <EARS_FormField label="Fiador" type="number" name="fiador" value={formData.fiador} onChange={handleChange} required />
           <div style={{ marginTop: '2rem' }}>
             <EARS_Button type="submit" fullWidth>Registrar Préstamo</EARS_Button>
           </div>

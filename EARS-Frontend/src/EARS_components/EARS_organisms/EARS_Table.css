@@ -1,11 +1,12 @@
 .ears-table-container {
   border-radius: var(--ears-radius-lg);
   overflow-x: auto;
+  width: 2000px;
   box-shadow: var(--ears-shadow-sm);
 }
 
 .ears-table {
-  width: 100%;
+  width: 2000px;
   border-collapse: collapse;
   text-align: left;
 }

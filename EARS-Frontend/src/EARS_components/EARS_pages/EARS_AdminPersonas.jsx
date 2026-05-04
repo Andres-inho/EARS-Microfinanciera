@@ -80,9 +80,13 @@ const EARS_AdminPersonas = () => {
   };
 
   const columns = [
+    { header: 'ID', accessor: 'id_persona' },
     { header: 'Identificación', accessor: 'identificacion' },
     { header: 'Nombres', accessor: 'nombres' },
+    { header: 'Dirección', accessor: 'direccion' },
     { header: 'Teléfono', accessor: 'telefono' },
+    { header: 'Calificación', accessor: 'calificacion' },
+    { header: 'Observaciones', accessor: 'observaciones' },
     { 
       header: 'Rol', 
       render: (row) => <span className="ears-role-badge">{row.rol}</span> 

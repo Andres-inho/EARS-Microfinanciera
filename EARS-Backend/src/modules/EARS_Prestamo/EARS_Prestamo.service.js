@@ -46,7 +46,7 @@ export const EARS_CreatePrestamo = async (data) => {
 }
 
 export const EARS_ObtenerPrestamos = async () => {
-    const [resultado] = await EARS_ConexionDb.query(`SELECT pr.id_prestamo,pr.valor_prestado,pr.interes,pr.tiempo,pr.estado,pr.fecha_prestamo, p.nombres as persona FROM prestamos pr INNER JOIN personas p ON pr.persona = p.id_persona ORDER BY pr.fecha_prestamo DESC`);
+    const [resultado] = await EARS_ConexionDb.query(`SELECT * FROM prestamos`);
     return resultado;
 };
 
