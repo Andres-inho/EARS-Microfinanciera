@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useEARS_Auth } from '../../EARS_context/EARS_AuthContext.jsx';
-import { Home, Users, CreditCard, DollarSign, Activity, FileText } from 'lucide-react';
+import { Home, Users, CreditCard, DollarSign, Activity, FileText, Building } from 'lucide-react';
 import './EARS_Sidebar.css';
 
 const EARS_Sidebar = () => {
@@ -13,6 +13,7 @@ const EARS_Sidebar = () => {
         return [
           { path: '/admin', icon: <Home size={20}/>, label: 'Dashboard' },
           { path: '/admin/personas', icon: <Users size={20}/>, label: 'Personas' },
+          { path: '/admin/sociedades', icon: <Building size={20}/>, label: 'Sociedades' },
           { path: '/admin/prestamos', icon: <CreditCard size={20}/>, label: 'Préstamos' },
           { path: '/admin/gastos', icon: <Activity size={20}/>, label: 'Gastos' },
           { path: '/admin/movimientos', icon: <DollarSign size={20}/>, label: 'Movimientos' },

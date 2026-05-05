@@ -6,7 +6,7 @@ export const EARS_Crear = async (req, res) => {
 }
 
 export const EARS_Consultar = async (req, res) => {
-    const {fecha_inicio, fecha_fin} = req.query;
+    const { fecha_inicio, fecha_fin } = req.query;
     const resultado = await service.EARS_ConsultarGastos(fecha_inicio, fecha_fin);
     res.json(resultado);
 }

@@ -8,9 +8,10 @@ import { Plus, CheckCircle } from 'lucide-react';
 
 const EARS_AdminPrestamos = () => {
   const [prestamos, setPrestamos] = useState([]);
+  const [personasLista, setPersonasLista] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    ficha: '', fecha_prestamo: '', interes: '', tiempo: '', valor_prestado: '', valor_futuro: '', tipo: '', persona: '', movimiento: '', fiador: '', estado: 'activo'
+    ficha: '', tipo: '', fecha_prestamo: '', interes: '', tiempo: '', valor_prestado: '', persona: '', fiador: ''
   });
 
   const cargarPrestamos = async () => {
@@ -22,8 +23,18 @@ const EARS_AdminPrestamos = () => {
     }
   };
 
+  const cargarPersonas = async () => {
+    try {
+      const data = await EARS_ApiFetch('/persona/get');
+      setPersonasLista(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     cargarPrestamos();
+    cargarPersonas();
   }, []);
 
   const handleChange = (e) => {
@@ -59,25 +70,31 @@ const EARS_AdminPrestamos = () => {
   const columns = [
     { header: 'ID', accessor: 'id_prestamo' },
     { header: 'Ficha', accessor: 'ficha' },
-    { header: 'Fecha prestamo', accessor: 'fecha_prestamo' },
+    { header: 'Fecha prestamo', render: (row) => new Date(row.fecha_prestamo).toLocaleDateString() },
     { header: 'Total interes', accessor: 'interes' },
     { header: 'Tiempo', accessor: 'tiempo' },
     { header: 'Prestado', accessor: 'valor_prestado' },
     { header: 'A pagar', accessor: 'valor_futuro' },
     { header: 'Tipo', accessor: 'tipo' },
-    { header: 'Persona', accessor: 'id_persona' },
+    {
+      header: 'Persona',
+      render: (row) => row.persona_nombre || `ID: ${row.persona || 'N/A'}`
+    },
     { header: 'Movimiento', accessor: 'movimiento' },
-    { header: 'Fiador', accessor: 'fiador' },
-    { 
-      header: 'Estado', 
+    {
+      header: 'Fiador',
+      render: (row) => row.fiador_nombre || (row.fiador ? `ID: ${row.fiador}` : 'Sin fiador')
+    },
+    {
+      header: 'Estado',
       render: (row) => (
-        <span style={{ 
-          color: row.estado === 'solicitado' ? 'var(--ears-warning)' : 
-                 row.estado === 'activo' ? 'var(--ears-success)' : 'var(--ears-text-main)' 
+        <span style={{
+          color: row.estado === 'solicitado' ? 'var(--ears-warning)' :
+            row.estado === 'activo' ? 'var(--ears-success)' : 'var(--ears-text-main)'
         }}>
           {row.estado}
         </span>
-      ) 
+      )
     },
   ];
 
@@ -89,10 +106,10 @@ const EARS_AdminPrestamos = () => {
         </EARS_Button>
       );
     }
-    return null;
+    return <span style={{ color: 'var(--ears-text-muted)', fontSize: '0.8rem' }}>No requiere acción</span>;
   };
 
-  
+
 
   return (
     <div>
@@ -107,16 +124,32 @@ const EARS_AdminPrestamos = () => {
 
       <EARS_Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Asignar Préstamo">
         <form onSubmit={handleSubmit}>
-          <EARS_FormField label="Ficha" name="ficha" value={formData.ficha} onChange={handleChange} required />
+          <EARS_FormField label="Ficha (Opcional)" name="ficha" value={formData.ficha} onChange={handleChange} />
+          <EARS_FormField label="Tipo de Préstamo (Opcional)" name="tipo" value={formData.tipo} onChange={handleChange} />
           <EARS_FormField label="Fecha del prestamo" type="date" name="fecha_prestamo" value={formData.fecha_prestamo} onChange={handleChange} required />
           <EARS_FormField label="Interés (%)" type="number" name="interes" value={formData.interes} onChange={handleChange} required />
-          <EARS_FormField label="Tiempo" type="number" name="tiempo" value={formData.tiempo} onChange={handleChange} required />
+          <EARS_FormField label="Tiempo (Meses)" type="number" name="tiempo" value={formData.tiempo} onChange={handleChange} required />
           <EARS_FormField label="Valor prestado" type="float" name="valor_prestado" value={formData.valor_prestado} onChange={handleChange} required />
-          <EARS_FormField label="Valor futuro" type="float" name="valor_futuro" value={formData.valor_futuro} onChange={handleChange} required />
-          <EARS_FormField label="Tipo" type="number" name="tipo" value={formData.tipo} onChange={handleChange} required />
-          <EARS_FormField label="Persona" type="number" name="persona" value={formData.persona} onChange={handleChange} required />
-          <EARS_FormField label="Movimiento" type="number" name="movimiento" value={formData.movimiento} onChange={handleChange} required />
-          <EARS_FormField label="Fiador" type="number" name="fiador" value={formData.fiador} onChange={handleChange} required />
+
+          <div className="ears-form-field">
+            <label className="ears-label">Persona (Cliente)</label>
+            <select className="ears-input" name="persona" value={formData.persona} onChange={handleChange} required>
+              <option value="">Seleccione un cliente</option>
+              {personasLista.map(p => (
+                <option key={p.id_persona} value={p.id_persona}>{p.nombres} - {p.identificacion}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="ears-form-field">
+            <label className="ears-label">Fiador (Opcional)</label>
+            <select className="ears-input" name="fiador" value={formData.fiador} onChange={handleChange}>
+              <option value="">Sin fiador</option>
+              {personasLista.map(p => (
+                <option key={p.id_persona} value={p.id_persona}>{p.nombres} - {p.identificacion}</option>
+              ))}
+            </select>
+          </div>
           <div style={{ marginTop: '2rem' }}>
             <EARS_Button type="submit" fullWidth>Registrar Préstamo</EARS_Button>
           </div>

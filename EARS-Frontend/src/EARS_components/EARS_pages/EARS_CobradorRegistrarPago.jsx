@@ -5,14 +5,21 @@ import EARS_Button from '../EARS_atoms/EARS_Button.jsx';
 import { DollarSign } from 'lucide-react';
 
 const EARS_CobradorRegistrarPago = () => {
-  const [idCuota, setIdCuota] = useState('');
+  const [formData, setFormData] = useState({ id_cuota: '', valor: '' });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await EARS_ApiFetch(`/cuota/pagar/${idCuota}`, { method: 'PUT' });
+      await EARS_ApiFetch('/cuota/pagar', { 
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
       alert('Pago registrado correctamente');
-      setIdCuota('');
+      setFormData({ id_cuota: '', valor: '' });
     } catch (error) {
       alert(error.message);
     }
@@ -24,10 +31,19 @@ const EARS_CobradorRegistrarPago = () => {
       <div className="ears-glass" style={{ padding: '2rem', borderRadius: 'var(--ears-radius-lg)' }}>
         <form onSubmit={handleSubmit}>
           <EARS_FormField 
-            label="ID de la Cuota a Pagar" 
+            label="ID de la Cuota" 
             type="number" 
-            value={idCuota} 
-            onChange={(e) => setIdCuota(e.target.value)} 
+            name="id_cuota"
+            value={formData.id_cuota} 
+            onChange={handleChange} 
+            required 
+          />
+          <EARS_FormField 
+            label="Valor a Pagar ($)" 
+            type="number" 
+            name="valor"
+            value={formData.valor} 
+            onChange={handleChange} 
             required 
           />
           <div style={{ marginTop: '1.5rem' }}>

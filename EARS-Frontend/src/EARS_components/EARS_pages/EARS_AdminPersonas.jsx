@@ -4,7 +4,7 @@ import EARS_Table from '../EARS_organisms/EARS_Table.jsx';
 import EARS_Modal from '../EARS_molecules/EARS_Modal.jsx';
 import EARS_Button from '../EARS_atoms/EARS_Button.jsx';
 import EARS_FormField from '../EARS_molecules/EARS_FormField.jsx';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Power } from 'lucide-react';
 
 const EARS_AdminPersonas = () => {
   const [personas, setPersonas] = useState([]);
@@ -69,9 +69,24 @@ const EARS_AdminPersonas = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Estás seguro de querer desactivar/eliminar a esta persona?')) {
+    if (window.confirm('¡CUIDADO! Estás a punto de eliminar físicamente a esta persona de la base de datos. Esta acción no se puede deshacer y fallará si tiene préstamos asociados. ¿Deseas continuar?')) {
       try {
         await EARS_ApiFetch(`/persona/delete/${id}`, { method: 'DELETE' });
+        cargarPersonas();
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  };
+
+  const handleToggleEstado = async (persona) => {
+    const nuevoEstado = persona.estado === 'activo' ? 'inactivo' : 'activo';
+    if (window.confirm(`¿Estás seguro de cambiar el estado a ${nuevoEstado}?`)) {
+      try {
+        await EARS_ApiFetch(`/persona/estado/${persona.id_persona}`, { 
+          method: 'PUT',
+          body: JSON.stringify({ estado: nuevoEstado })
+        });
         cargarPersonas();
       } catch (error) {
         alert(error.message);
@@ -105,6 +120,13 @@ const EARS_AdminPersonas = () => {
     <>
       <EARS_Button variant="secondary" onClick={() => handleEdit(row)}>
         <Edit size={16} /> Editar
+      </EARS_Button>
+      <EARS_Button 
+        variant={row.estado === 'activo' ? 'warning' : 'success'} 
+        onClick={() => handleToggleEstado(row)} 
+        style={{ marginLeft: '0.5rem' }}
+      >
+        <Power size={16} /> {row.estado === 'activo' ? 'Desactivar' : 'Activar'}
       </EARS_Button>
       <EARS_Button variant="danger" onClick={() => handleDelete(row.id_persona)} style={{ marginLeft: '0.5rem' }}>
         <Trash2 size={16} /> Eliminar

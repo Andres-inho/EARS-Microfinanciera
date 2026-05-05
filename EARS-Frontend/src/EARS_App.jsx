@@ -15,6 +15,7 @@ import EARS_ClientePrestamos from './EARS_components/EARS_pages/EARS_ClientePres
 import EARS_CobradorDashboard from './EARS_components/EARS_pages/EARS_CobradorDashboard.jsx';
 import EARS_CobradorCuotas from './EARS_components/EARS_pages/EARS_CobradorCuotas.jsx';
 import EARS_CobradorRegistrarPago from './EARS_components/EARS_pages/EARS_CobradorRegistrarPago.jsx';
+import EARS_AdminSociedades from './EARS_components/EARS_pages/EARS_AdminSociedades.jsx';
 
 const EARS_ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, isAuthenticated } = useEARS_Auth();
@@ -41,6 +42,7 @@ function EARS_App() {
             <Route path="/admin" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminDashboard /></EARS_ProtectedRoute>} />
             <Route path="/admin/reportes" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminReportes /></EARS_ProtectedRoute>} />
             <Route path="/admin/personas" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminPersonas /></EARS_ProtectedRoute>} />
+            <Route path="/admin/sociedades" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminSociedades /></EARS_ProtectedRoute>} />
             <Route path="/admin/prestamos" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminPrestamos /></EARS_ProtectedRoute>} />
             <Route path="/admin/gastos" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminGastos /></EARS_ProtectedRoute>} />
             <Route path="/admin/movimientos" element={<EARS_ProtectedRoute allowedRoles={['admin']}><EARS_AdminMovimientos /></EARS_ProtectedRoute>} />

@@ -22,10 +22,10 @@ const EARS_AdminMovimientos = () => {
     { header: 'ID', accessor: 'id_movimiento' },
     { header: 'Fecha', render: (row) => new Date(row.fecha).toLocaleDateString() },
     { header: 'Valor', render: (row) => `$${row.valor}` },
-    { 
-      header: 'Tipo', 
+    {
+      header: 'Tipo',
       render: (row) => (
-        <span style={{ 
+        <span style={{
           color: row.tipo === 'ingreso' ? 'var(--ears-success)' : 'var(--ears-danger)',
           fontWeight: 600,
           textTransform: 'uppercase',

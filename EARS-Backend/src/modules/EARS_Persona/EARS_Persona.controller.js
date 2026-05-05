@@ -27,3 +27,9 @@ export const EARS_GetById = async (req, res) => {
     }
     res.json(resultado);
 }
+
+export const EARS_CambiarEstado = async (req, res) => {
+    const { estado } = req.body;
+    const resultado = await service.EARS_CambiarEstadoPersona(req.params.id, estado);
+    res.json(resultado);
+}

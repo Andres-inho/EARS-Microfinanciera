@@ -33,6 +33,9 @@ EARS_App.use('/api/movimiento', EARS_RutaMovimiento);
 import { EARS_RutaReporte } from './modules/EARS_Reporte/EARS_Reporte.routes.js';
 EARS_App.use('/api/reporte', EARS_RutaReporte);
 
+import { EARS_RutaSociedad } from './modules/EARS_Sociedad/EARS_Sociedad.routes.js';
+EARS_App.use('/api/sociedad', EARS_RutaSociedad);
+
 EARS_App.listen(process.env.PORT, () => {
     console.log('Server corriendo en puerto:', process.env.PORT)
 });

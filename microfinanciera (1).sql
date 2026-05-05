@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-05-2026 a las 05:46:01
+-- Tiempo de generación: 05-05-2026 a las 05:54:03
 -- Versión del servidor: 8.4.3
 -- Versión de PHP: 8.3.16
 
@@ -44,11 +44,8 @@ CREATE TABLE `cuotas` (
 --
 
 INSERT INTO `cuotas` (`id_cuota`, `fecha_pago`, `fecha_recaudo`, `nro_cuota`, `valor`, `tipo`, `prestamo`, `estado`, `movimiento`) VALUES
-(1, '2026-06-01', '2026-05-03', 1, 240000.00, NULL, 4, 'pagado', 13),
-(2, '2026-07-01', NULL, 2, 240000.00, NULL, 4, 'pendiente', NULL),
-(3, '2026-08-01', NULL, 3, 240000.00, NULL, 4, 'pendiente', NULL),
-(4, '2026-09-01', NULL, 4, 240000.00, NULL, 4, 'pendiente', NULL),
-(5, '2026-10-01', NULL, 5, 240000.00, NULL, 4, 'pendiente', NULL);
+(15, '2026-06-04', NULL, 1, 181500.00, NULL, 10, 'pendiente', NULL),
+(16, '2026-07-04', NULL, 2, 181500.00, NULL, 10, 'pendiente', NULL);
 
 -- --------------------------------------------------------
 
@@ -64,6 +61,13 @@ CREATE TABLE `gastos` (
   `movimiento` int DEFAULT NULL,
   `estado` enum('activo','anulado') DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `gastos`
+--
+
+INSERT INTO `gastos` (`id_gasto`, `fecha`, `detalle`, `valor`, `movimiento`, `estado`) VALUES
+(3, '2026-05-05', 'Personal', 100000.00, 28, 'activo');
 
 -- --------------------------------------------------------
 
@@ -86,10 +90,10 @@ CREATE TABLE `movimientos` (
 --
 
 INSERT INTO `movimientos` (`id_movimiento`, `fecha`, `sociedad`, `valor`, `caja`, `tipo`, `estado`) VALUES
-(9, '2026-05-02', NULL, 1000000.00, NULL, 'egreso', 'activo'),
-(13, '2026-05-03', NULL, 240000.00, NULL, 'ingreso', 'activo'),
-(14, '2026-05-03', NULL, 10000.00, NULL, 'ingreso', 'activo'),
-(15, '2026-05-04', NULL, 230000.00, NULL, 'ingreso', 'activo');
+(27, '2026-05-05', NULL, 300000.00, NULL, 'egreso', 'activo'),
+(28, '2026-05-05', NULL, 100000.00, NULL, 'egreso', 'activo'),
+(29, '2026-05-05', NULL, 181500.00, NULL, 'ingreso', 'activo'),
+(30, '2026-05-05', NULL, 181500.00, NULL, 'ingreso', 'activo');
 
 -- --------------------------------------------------------
 
@@ -110,8 +114,8 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id_pago`, `cuota`, `valor`, `fecha`, `movimiento`) VALUES
-(1, 2, 10000.00, '2026-05-03 23:35:44', 14),
-(2, 2, 230000.00, '2026-05-04 00:09:31', 15);
+(8, 15, 181500.00, '2026-05-05 00:23:41', 29),
+(9, 16, 181500.00, '2026-05-05 00:24:08', 30);
 
 -- --------------------------------------------------------
 
@@ -138,7 +142,8 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`id_persona`, `identificacion`, `nombres`, `direccion`, `telefono`, `calificacion`, `rol`, `observaciones`, `token`, `password`, `estado`) VALUES
-(1, '987654321', 'María Gómez', 'Calle 10 #20-30', '3019876543', 5, 'cliente', NULL, NULL, '123456', NULL);
+(2, '1083880832', 'Andres Rojas', 'vereda el portal', '3232832847', 3, 'cobrador', 'Nada', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjoyLCJyb2wiOiJjb2JyYWRvciIsImlhdCI6MTc3Nzk1ODYxMiwiZXhwIjoxNzc4MDQ1MDEyfQ.wEb0gH9okHz815G_wUN-DMfuaz66LvMo3Hsdb0u0qYw', '123456', 'activo'),
+(3, '31232323', 'Santiago Anacona Rojas', 'Calle 10 #20-30', '3175346209', 3, 'cliente', 'Buenisimo pagador', NULL, '$2b$10$usODU68HAPSJ3QR6wSM0YO7LlY8JSjoXr44mNVF8ScHP7Byim7uI.', 'activo');
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,7 @@ CREATE TABLE `prestamos` (
 --
 
 INSERT INTO `prestamos` (`id_prestamo`, `ficha`, `fecha_prestamo`, `interes`, `tiempo`, `valor_prestado`, `valor_futuro`, `tipo`, `persona`, `movimiento`, `fiador`, `estado`) VALUES
-(4, NULL, '2026-05-02', 20.00, 5, 1000000.00, NULL, NULL, 1, NULL, 1, 'activo');
+(10, '2323234', '2026-05-05', 10.00, 2, 300000.00, 363000.00, 'Egreso', 3, 27, NULL, 'activo');
 
 -- --------------------------------------------------------
 
@@ -177,8 +182,16 @@ INSERT INTO `prestamos` (`id_prestamo`, `ficha`, `fecha_prestamo`, `interes`, `t
 CREATE TABLE `sociedades` (
   `id_sociedad` int NOT NULL,
   `sociedad` varchar(200) DEFAULT NULL,
-  `caja` decimal(12,2) DEFAULT '0.00'
+  `caja` decimal(12,2) DEFAULT '0.00',
+  `estado` varchar(50) NOT NULL DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `sociedades`
+--
+
+INSERT INTO `sociedades` (`id_sociedad`, `sociedad`, `caja`, `estado`) VALUES
+(1, 'RBLS', 4000000.00, 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -243,43 +256,43 @@ ALTER TABLE `sociedades`
 -- AUTO_INCREMENT de la tabla `cuotas`
 --
 ALTER TABLE `cuotas`
-  MODIFY `id_cuota` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_cuota` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`
 --
 ALTER TABLE `gastos`
-  MODIFY `id_gasto` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gasto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_movimiento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pago` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_persona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_prestamo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `sociedades`
 --
 ALTER TABLE `sociedades`
-  MODIFY `id_sociedad` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sociedad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

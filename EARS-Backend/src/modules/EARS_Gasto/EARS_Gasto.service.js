@@ -1,7 +1,7 @@
 import { EARS_ConexionDb } from "../../config/EARS-ConexionDb.js";
 
 export const EARS_CrearGasto = async (data) => {
-    const {fecha, detalle, valor} = data;
+    const { fecha, detalle, valor } = data;
     const coneccion = await EARS_ConexionDb.getConnection();
     await coneccion.beginTransaction();
     const [movi] = await coneccion.query(`insert into movimientos (fecha, valor, tipo, estado) values (?, ?, 'egreso', 'activo')`, [fecha, valor]);
@@ -22,6 +22,7 @@ export const EARS_ConsultarGastos = async (fecha_inicio, fecha_fin) => {
         query += ' where fecha between ? and ?';
         params = [fecha_inicio, fecha_fin];
     }
+    query += ' order by id_gasto asc';
     const [rows] = await EARS_ConexionDb.query(query, params);
     return rows;
 }

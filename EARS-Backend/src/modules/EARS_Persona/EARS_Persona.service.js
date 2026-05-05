@@ -2,7 +2,7 @@ import { EARS_ConexionDb } from "../../config/EARS-ConexionDb.js";
 import bcrypt from 'bcrypt';
 
 export const EARS_GetPersona = async () => {
-    const [row] = await EARS_ConexionDb.query('select * from personas');
+    const [row] = await EARS_ConexionDb.query('select * from personas order by id_persona asc');
     return row;
 }
 
@@ -42,6 +42,11 @@ export const EARS_UpdatePersona = async (id, data) => {
 }
 
 export const EARS_DeletePersona = async (id) => {
-    const [row] = await EARS_ConexionDb.query("update personas set estado = 'inactivo' where id_persona = ?", [id]);
+    const [row] = await EARS_ConexionDb.query("delete from personas where id_persona = ?", [id]);
     return row;
+}
+
+export const EARS_CambiarEstadoPersona = async (id, estado) => {
+    const [resultado] = await EARS_ConexionDb.query('update personas set estado = ? where id_persona = ?', [estado, id]);
+    return resultado;
 }

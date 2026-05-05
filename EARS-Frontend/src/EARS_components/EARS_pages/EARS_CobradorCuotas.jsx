@@ -20,9 +20,12 @@ const EARS_CobradorCuotas = () => {
     cargarCuotas();
   }, []);
 
-  const pagarCuota = async (id_cuota) => {
+  const pagarCuota = async (cuota) => {
     try {
-      await EARS_ApiFetch(`/cuota/pagar/${id_cuota}`, { method: 'PUT' });
+      await EARS_ApiFetch('/cuota/pagar', { 
+        method: 'POST',
+        body: JSON.stringify({ id_cuota: cuota.id_cuota, valor: cuota.valor })
+      });
       cargarCuotas();
     } catch (error) {
       alert(error.message);
@@ -33,14 +36,17 @@ const EARS_CobradorCuotas = () => {
     { header: 'ID Cuota', accessor: 'id_cuota' },
     { header: 'Nro Cuota', accessor: 'nro_cuota' },
     { header: 'ID Préstamo', accessor: 'id_prestamo' },
-    { header: 'ID Cliente', accessor: 'persona' },
+    { 
+      header: 'Cliente', 
+      render: (row) => row.persona_nombre || `ID: ${row.persona}` 
+    },
     { header: 'Fecha de Pago', render: (row) => new Date(row.fecha_pago).toLocaleDateString() },
     { header: 'Valor a Pagar', render: (row) => `$${row.valor}` },
     { header: 'Estado', accessor: 'estado' },
   ];
 
   const renderActions = (row) => (
-    <EARS_Button variant="success" onClick={() => pagarCuota(row.id_cuota)}>
+    <EARS_Button variant="success" onClick={() => pagarCuota(row)}>
       <CheckCircle size={16} /> Recaudar
     </EARS_Button>
   );
